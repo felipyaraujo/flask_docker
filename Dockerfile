@@ -8,12 +8,7 @@ RUN pip install -r /requirements.txt
 
 EXPOSE 8081
 
-RUN mkdir /app && \
-    chmod 775 /app && \
-    touch /app/gunicorn.sh && \
-    chown administrator:administrator /app/gunicorn.sh && \
-    chmod +x /gunicorn.sh
-WORKDIR /app
+RUN mkdir /app
 COPY ./app /app
 
-ENTRYPOINT [ "./gunicorn.sh" ]
+ENTRYPOINT gunicorn --bind 0.0.0.0:8081 server_ws:app
