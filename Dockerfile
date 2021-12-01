@@ -11,4 +11,6 @@ EXPOSE 8081
 RUN mkdir /app
 COPY ./app /app
 
+RUN ["bin/sh"]
+
 ENTRYPOINT gunicorn --bind 0.0.0.0:8081 server_ws:app
