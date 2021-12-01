@@ -8,7 +8,11 @@ RUN pip install -r /requirements.txt
 
 EXPOSE 8081
 
-RUN mkdir /app
+RUN mkdir /app && \
+    chmod 775 /app && \
+    touch /app/gunicorn.sh && \
+    chown administrator:administrator /app/gunicorn.sh && \
+    chmod +x /gunicorn.sh
 WORKDIR /app
 COPY ./app /app
 
